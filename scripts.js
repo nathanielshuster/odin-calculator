@@ -21,9 +21,9 @@ function operate(operator, a, b) {
 }
 
 function displayNumber(e) {
-  display = e.target.value;
+  display = Number(e.target.classList[0]);
   let displayPara = document.querySelector('.calc-display p');
-  displayPara.textContent = displayValue;
+  displayPara.textContent = display.toString();
 }
 
 const buttons = document.querySelectorAll('button');
