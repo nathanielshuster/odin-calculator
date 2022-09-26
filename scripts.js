@@ -1,5 +1,7 @@
-let display = "";
+let num1 = 0;
+let num2 = 0;
 let operation = "";
+const displayPara = document.querySelector('.calc-display p');
 
 function add(a, b) {
   return a + b;
@@ -22,20 +24,19 @@ function operate(operator, a, b) {
 }
 
 function displayNumber(e) {
-  display += e.target.classList[1];
-  let displayPara = document.querySelector('.calc-display p');
-  displayPara.textContent = display;
+  let num = e.target.classList[1];
+  displayPara.textContent += num;
 }
 
 function saveOperation(e) {
   operation += e.target.classList[1];
+  num1 = Number(displayPara.textContent)
 }
 
 function clear(e) {
-  display = "0";
-  operation = "";
-  let displayPara = document.querySelector('.calc-display p');
-  displayPara.textContent = display;
+  inputs = [];
+  operations = [];
+  displayPara.textContent = "0";
 }
 
 const numbers = document.querySelectorAll('.number');
@@ -44,5 +45,8 @@ numbers.forEach(button => button.addEventListener('click', displayNumber))
 const operators = document.querySelectorAll('.operator');
 operators.forEach(button => button.addEventListener('click', saveOperation))
 
-const allClear = document.querySelectorAll('.clear');
-allClear.forEach(button => button.addEventListener('click', clear))
+const allClear = document.querySelector('.clear');
+allClear.addEventListener('click', clear)
+
+const performOp = document.querySelector('.operate');
+performOp.addEventListener('click', operate)
