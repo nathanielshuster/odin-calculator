@@ -1,7 +1,4 @@
-let num1 = 0;
-let num2 = 0;
-let operation = "";
-const displayPara = document.querySelector('.calc-display p');
+const display = document.querySelector('.display p');
 
 function add(a, b) {
   return a + b;
@@ -24,19 +21,16 @@ function operate(operator, a, b) {
 }
 
 function displayNumber(e) {
-  let num = e.target.classList[1];
-  displayPara.textContent += num;
+  let num = e.target.dataset.number
+  display.textContent += num;
 }
 
 function saveOperation(e) {
   operation += e.target.classList[1];
-  num1 = Number(displayPara.textContent)
 }
 
 function clear(e) {
-  inputs = [];
-  operations = [];
-  displayPara.textContent = "0";
+  display.textContent = "0";
 }
 
 const numbers = document.querySelectorAll('.number');
