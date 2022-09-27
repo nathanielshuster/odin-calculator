@@ -1,6 +1,7 @@
 let a = null;
 let b = null;
 let operation = "";
+let startNewNumber = false;
 const display = document.querySelector('.display p');
 
 function add(a, b) {
@@ -19,15 +20,30 @@ function divide(a, b) {
   return a/b;
 }
 
-function operate(operator, a, b) {
-  return operator(a, b);
+function operate() {
+  b = Number(display.textContent);
+
+  if (operation === "add") {
+    display.textContent = add(a, b).toString();
+    a = add(a, b)
+  } else if (operation === "subtract") {
+    display.textContent = subtract(a, b).toString();
+    a = subtract(a, b)
+  } else if (operation === "multiply") {
+    display.textContent = multiply(a, b).toString();
+    a = multiply(a, b)
+  } else if (operation === "divide") {
+    display.textContent = divide(a, b).toString();
+    a = divide(a, b)
+  }
 }
 
 function displayNumber(e) {
   let num = e.target.dataset.number
 
-  if (display.textContent === "0") {
+  if (display.textContent === "0" || startNewNumber === true) {
     display.textContent = num;
+    startNewNumber = false;
   } else {
     display.textContent += num;
   }
@@ -36,6 +52,7 @@ function displayNumber(e) {
 function saveOperation(e) {
   operation = e.target.dataset.operator;
   a = Number(display.textContent);
+  startNewNumber = true;
 }
 
 function clear() {
@@ -47,8 +64,8 @@ function clear() {
 const numbers = document.querySelectorAll('.number');
 numbers.forEach(button => button.addEventListener('click', displayNumber))
 
-const operators = document.querySelectorAll('.operator');
-operators.forEach(button => button.addEventListener('click', saveOperation))
+const operatorButtons = document.querySelectorAll('.operator');
+operatorButtons.forEach(button => button.addEventListener('click', saveOperation))
 
 const allClear = document.querySelector('.clear');
 allClear.addEventListener('click', clear)
