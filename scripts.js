@@ -26,15 +26,19 @@ function operate() {
   if (operation === "add") {
     display.textContent = add(a, b).toString();
     a = add(a, b)
+    b = null;
   } else if (operation === "subtract") {
     display.textContent = subtract(a, b).toString();
     a = subtract(a, b)
+    b = null;
   } else if (operation === "multiply") {
     display.textContent = multiply(a, b).toString();
     a = multiply(a, b)
+    b = null;
   } else if (operation === "divide") {
     display.textContent = divide(a, b).toString();
     a = divide(a, b)
+    b = null;
   }
 }
 
@@ -50,8 +54,13 @@ function displayNumber(e) {
 }
 
 function saveOperation(e) {
+  if (a) {
+    b = Number(display.textContent);
+    operate();
+  } else {
+    a = Number(display.textContent);
+  }
   operation = e.target.dataset.operator;
-  a = Number(display.textContent);
   startNewNumber = true;
 }
 
