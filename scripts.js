@@ -1,3 +1,6 @@
+let a = null;
+let b = null;
+let operation = "";
 const display = document.querySelector('.display p');
 
 function add(a, b) {
@@ -22,14 +25,22 @@ function operate(operator, a, b) {
 
 function displayNumber(e) {
   let num = e.target.dataset.number
-  display.textContent += num;
+
+  if (display.textContent === "0") {
+    display.textContent = num;
+  } else {
+    display.textContent += num;
+  }
 }
 
 function saveOperation(e) {
-  operation += e.target.classList[1];
+  operation = e.target.dataset.operator;
+  a = Number(display.textContent);
 }
 
-function clear(e) {
+function clear() {
+  a = null;
+  b = null;
   display.textContent = "0";
 }
 
