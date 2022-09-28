@@ -21,8 +21,6 @@ function divide(a, b) {
 }
 
 function operate() {
-  b = Number(display.textContent);
-
   if (operation === "add") {
     display.textContent = add(a, b).toString();
     a = add(a, b)
@@ -54,13 +52,14 @@ function displayNumber(e) {
 }
 
 function saveOperation(e) {
-  if (a) {
+  if (a !== null) {
     b = Number(display.textContent);
     operate();
+    operation = e.target.dataset.operator;
   } else {
     a = Number(display.textContent);
+    operation = e.target.dataset.operator;
   }
-  operation = e.target.dataset.operator;
   startNewNumber = true;
 }
 
